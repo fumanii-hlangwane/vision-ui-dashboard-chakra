@@ -1,3 +1,21 @@
+/*!
+
+=========================================================
+- Vision UI Free Chakra - v1.0.0
+=========================================================
+
+- Product Page: https://www.creative-tim.com/product/vision-ui-free-chakra
+- Copyright 2021 Creative Tim (https://www.creative-tim.com/)
+- Licensed under MIT (https://github.com/creativetimofficial/vision-ui-free-chakra/blob/master LICENSE.md)
+
+- Design and Coded by Simmmple & Creative Tim
+
+=========================================================
+
+- The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+*/
+
 /*eslint-disable*/
 import { HamburgerIcon } from "@chakra-ui/icons";
 // chakra imports
@@ -16,9 +34,7 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import IconBox from "components/Icons/IconBox";
-import { SimmmpleLogoWhite } from "components/Icons/Icons";
 import { Separator } from "components/Separator/Separator";
-import { SidebarHelp } from "components/Sidebar/SidebarHelp";
 import PropTypes from "prop-types";
 import React from "react";
 import { NavLink, useLocation } from "react-router-dom";
@@ -54,7 +70,7 @@ function Sidebar(props) {
         var st = {};
         st[prop["state"]] = !state[prop.state];
         return (
-          <>
+          <React.Fragment key={key}>
             <Text
               color={activeColor}
               fontWeight='bold'
@@ -72,11 +88,11 @@ function Sidebar(props) {
                 : prop.name}
             </Text>
             {createLinks(prop.views)}
-          </>
+          </React.Fragment>
         );
       }
       return (
-        <NavLink to={prop.layout + prop.path}>
+        <NavLink to={prop.layout + prop.path} key={key}>
           {activeRoute(prop.layout + prop.path) === "active" ? (
             <Button
               boxSize='initial'
@@ -183,11 +199,10 @@ function Sidebar(props) {
       );
     });
   };
-  const { logoText, routes, sidebarVariant } = props;
+  const { routes, sidebarVariant } = props;
 
   var links = <>{createLinks(routes)}</>;
   //  BRAND
-  //  Chakra Color Mode
   let sidebarBg =
     "linear-gradient(111.84deg, rgba(6, 11, 38, 0.94) 59.3%, rgba(26, 31, 55, 0) 100%)";
   let sidebarRadius = "16px";
@@ -204,12 +219,11 @@ function Sidebar(props) {
         justifyContent='center'
         alignItems='center'
         fontSize='11px'>
-        <SimmmpleLogoWhite w='22px' h='22px' me='10px' mt='2px' />
         <Box
           bg='linear-gradient(97.89deg, #FFFFFF 70.67%, rgba(117, 122, 140, 0) 108.55%)'
           bgClip='text'>
-          <Text fontSize='sm' letterSpacing='3px' mt='3px' color='transparent'>
-            {logoText}
+          <Text fontSize='sm' letterSpacing='3px' mt='3px' color='transparent' fontWeight='bold'>
+            EXECUTIVE ENGINE
           </Text>
         </Box>
       </Link>
@@ -242,7 +256,6 @@ function Sidebar(props) {
           <Stack direction='column' mb='40px'>
             <Box>{links}</Box>
           </Stack>
-          <SidebarHelp></SidebarHelp>
         </Box>
       </Box>
     </Box>
@@ -277,7 +290,7 @@ export function SidebarResponsive(props) {
         var st = {};
         st[prop["state"]] = !state[prop.state];
         return (
-          <>
+          <React.Fragment key={key}>
             <Text
               color={activeColor}
               fontWeight='bold'
@@ -295,11 +308,11 @@ export function SidebarResponsive(props) {
                 : prop.name}
             </Text>
             {createLinks(prop.views)}
-          </>
+          </React.Fragment>
         );
       }
       return (
-        <NavLink to={prop.layout + prop.path}>
+        <NavLink to={prop.layout + prop.path} key={key}>
           {activeRoute(prop.layout + prop.path) === "active" ? (
             <Button
               boxSize='initial'
@@ -401,11 +414,10 @@ export function SidebarResponsive(props) {
       );
     });
   };
-  const { logoText, routes, iconColor, ...rest } = props;
+  const { routes, iconColor, ...rest } = props;
 
   var links = <>{createLinks(routes)}</>;
   //  BRAND
-  //  Chakra Color Mode
   var brand = (
     <Box pt={"35px"} mb='8px'>
       <Link
@@ -418,12 +430,11 @@ export function SidebarResponsive(props) {
         justifyContent='center'
         alignItems='center'
         fontSize='11px'>
-        <SimmmpleLogoWhite w='22px' h='22px' me='10px' mt='2px' />
         <Box
           bg='linear-gradient(97.89deg, #FFFFFF 70.67%, rgba(117, 122, 140, 0) 108.55%)'
           bgClip='text'>
-          <Text fontSize='sm' letterSpacing='3px' mt='3px' color='transparent'>
-            {logoText}
+          <Text fontSize='sm' letterSpacing='3px' mt='3px' color='transparent' fontWeight='bold'>
+            EXECUTIVE ENGINE
           </Text>
         </Box>
       </Link>
@@ -477,7 +488,6 @@ export function SidebarResponsive(props) {
               <Stack direction='column' mb='40px'>
                 <Box>{links}</Box>
               </Stack>
-              <SidebarHelp></SidebarHelp>
             </Box>
           </DrawerBody>
         </DrawerContent>
@@ -488,12 +498,10 @@ export function SidebarResponsive(props) {
 // PROPS
 
 Sidebar.propTypes = {
-  logoText: PropTypes.string,
   routes: PropTypes.arrayOf(PropTypes.object),
   variant: PropTypes.string,
 };
 SidebarResponsive.propTypes = {
-  logoText: PropTypes.string,
   routes: PropTypes.arrayOf(PropTypes.object),
 };
 
